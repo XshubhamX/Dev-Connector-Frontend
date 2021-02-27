@@ -221,6 +221,11 @@ figure {
   margin: 0 0 1rem;
 }
 
+.svg {
+  height: 1.38rem;
+  width: 1.38rem;
+}
+
 img {
   vertical-align: middle;
   border-style: none;

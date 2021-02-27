@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  Nav,
-  Navbar,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-} from "react-bootstrap";
+import { Nav, Navbar, Form, FormControl, NavDropdown } from "react-bootstrap";
+
+import Chat from "../chat.svg";
+import Profile from "../profile.svg";
+import Home from "../home.svg";
 
 import { LinkContainer } from "react-router-bootstrap";
-import ChatSvg from "../static/svgs/chat";
 
 const layout = (props) => {
   return (
@@ -20,28 +16,33 @@ const layout = (props) => {
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          <NavDropdown
+            className="ml-auto"
+            title="Select Category"
+            id="basic-nav-dropdown"
+          >
+            <NavDropdown.Item href="#action/3.1">Repository</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="#action/3.2">User</NavDropdown.Item>
+          </NavDropdown>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-1" />
+          </Form>
           <Nav className="ml-auto">
-            <NavDropdown
-              className="ml-auto"
-              title="Select Category"
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item href="#action/3.1">Repository</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2">User</NavDropdown.Item>
-            </NavDropdown>
-            <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-1"
-              />
-            </Form>
+            <LinkContainer to="/">
+              <Nav.Link>
+                <img className="svg" src={Home} alt="Home" />
+              </Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/:uid/messages">
-              <Nav.Link>Messages</Nav.Link>
+              <Nav.Link>
+                <img className="svg" src={Chat} alt="Messages" />
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/:uid/profile">
-              <Nav.Link>Profile</Nav.Link>
+              <Nav.Link>
+                <img className="svg" src={Profile} alt="Profile" />
+              </Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>
