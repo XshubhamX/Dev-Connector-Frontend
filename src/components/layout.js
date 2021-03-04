@@ -1,16 +1,16 @@
 import React from "react";
 import { Nav, Navbar, Form, FormControl, NavDropdown } from "react-bootstrap";
 
-import Chat from "../chat.svg";
-import Profile from "../profile.svg";
-import Home from "../home.svg";
+import Chat from "../static/svg/chat.svg";
+import Profile from "../static/svg/profile.svg";
+import Home from "../static/svg/home.svg";
 
 import { LinkContainer } from "react-router-bootstrap";
 
 const layout = (props) => {
   return (
     <React.Fragment>
-      <Navbar bg="light" expand="lg" navbarFixedTop>
+      <Navbar bg="light" expand="lg" sticky="top">
         <LinkContainer to="/">
           <Navbar.Brand>CONNECT</Navbar.Brand>
         </LinkContainer>
@@ -31,22 +31,23 @@ const layout = (props) => {
           <Nav className="ml-auto">
             <LinkContainer to="/">
               <Nav.Link>
-                <img className="svg" src={Home} alt="Home" />
+                <img className="svg_nav" src={Home} alt="Home" />
               </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/:uid/messages">
               <Nav.Link>
-                <img className="svg" src={Chat} alt="Messages" />
+                <img className="svg_nav" src={Chat} alt="Messages" />
               </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/:uid/profile">
               <Nav.Link>
-                <img className="svg" src={Profile} alt="Profile" />
+                <img className="svg_nav" src={Profile} alt="Profile" />
               </Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
       {props.children}
     </React.Fragment>
   );

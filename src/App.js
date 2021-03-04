@@ -17,7 +17,7 @@ const App = (props) => {
       <div class="container">
         <div class="row">
           <div class="col-sm-9">{routes}</div>
-          <div class="col-sm-3">
+          <div class="col-sm-3" fixed="top">
             <Notification />
           </div>
         </div>

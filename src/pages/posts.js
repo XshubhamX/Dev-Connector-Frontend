@@ -13,6 +13,8 @@ const Posts = (props) => {
             title={x.title}
             desc={x.desc}
             photo={x.photo}
+            likes={x.likes}
+            comments={x.comments}
           />
         );
       })}

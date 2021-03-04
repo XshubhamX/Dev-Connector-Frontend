@@ -221,9 +221,16 @@ figure {
   margin: 0 0 1rem;
 }
 
-.svg {
+.svg_nav {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0.35rem;
+}
+.svg_page {
   height: 1.38rem;
   width: 1.38rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 img {

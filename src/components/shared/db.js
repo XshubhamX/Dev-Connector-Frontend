@@ -6,6 +6,8 @@ export const db = [
     title: "Gaming Laptop",
     desc: "this a Great Gaming Laptop",
     time: "3 min ago",
+    likes: 156,
+    comments: 20,
   },
   {
     userName: "shubham",
@@ -14,6 +16,8 @@ export const db = [
     title: "Gaming Laptop",
     desc: "this a Great Gaming Laptop",
     time: "3 min ago",
+    likes: 156,
+    comments: 20,
   },
   {
     userName: "shubham",
@@ -22,6 +26,8 @@ export const db = [
     title: "Gaming Laptop",
     desc: "this a Great Gaming Laptop",
     time: "3 min ago",
+    likes: 156,
+    comments: 20,
   },
   {
     userName: "shubham",
@@ -30,6 +36,8 @@ export const db = [
     title: "Gaming Laptop",
     desc: "this a Great Gaming Laptop",
     time: "3 min ago",
+    likes: 156,
+    comments: 20,
   },
   {
     userName: "shubham",
@@ -38,6 +46,8 @@ export const db = [
     title: "Gaming Laptop",
     desc: "this a Great Gaming Laptop",
     time: "3 min ago",
+    likes: 156,
+    comments: 20,
   },
   {
     userName: "shubham",
@@ -46,5 +56,7 @@ export const db = [
     title: "Gaming Laptop",
     desc: "this a Great Gaming Laptop",
     time: "3 min ago",
+    likes: 156,
+    comments: 20,
   },
 ];
