@@ -10,7 +10,7 @@ import { LinkContainer } from "react-router-bootstrap";
 const layout = (props) => {
   return (
     <React.Fragment>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" navbarFixedTop>
         <LinkContainer to="/">
           <Navbar.Brand>CONNECT</Navbar.Brand>
         </LinkContainer>
