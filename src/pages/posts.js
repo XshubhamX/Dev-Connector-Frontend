@@ -1,28 +1,25 @@
-import React from "react";
-import { gql, useQuery } from "@apollo/client";
-import { Spinner } from "react-bootstrap";
-
-const GET_USERS = gql`
-  query {
-    users {
-      email
-    }
-  }
-`;
+import React, { useEffect, useRef } from "react";
+import { db } from "../components/shared/db";
+import Post from "../components/childComponents/post";
 
 const Posts = (props) => {
-  const { loading, error, data } = useQuery(GET_USERS);
+  const posts = useRef(db);
 
-  console.log(data);
+  useEffect(() => {
+    posts.current = db.map((x) => {
+      return (
+        <Post
+          time={x.time}
+          userName={x.userName}
+          title={x.title}
+          desc={x.desc}
+          photo={x.photo}
+        />
+      );
+    });
+  }, db);
 
-  if (loading) return <Spinner />;
-  if (error) return `Error! ${error.message}`;
-
-  return (
-    <div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
+  return <React.Fragment>{posts.current}</React.Fragment>;
 };
 
 export default Posts;

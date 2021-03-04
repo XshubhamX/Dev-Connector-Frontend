@@ -47,6 +47,7 @@ const layout = (props) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      {props.children}
     </React.Fragment>
   );
 };
