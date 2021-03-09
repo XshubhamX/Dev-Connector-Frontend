@@ -16,8 +16,10 @@ const App = (props) => {
     <Layout>
       <div class="container">
         <div class="row">
-          <div class="col-sm-9">{routes}</div>
-          <div class="col-sm-3" fixed="top">
+          <div class="col-lg-8 posts" fixed-top>
+            {routes}
+          </div>
+          <div class="col-sm-4" fixed-top>
             <Notification />
           </div>
         </div>
