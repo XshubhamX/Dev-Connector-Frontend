@@ -23,7 +23,7 @@ const Post = (props) => {
         alt="Img"
       />
       <div className="card-body">
-        <input type="checkbox" />
+        <input type="checkbox" checked={props.liked} />
         <img class="svg_page" src={Comment} alt="Comment" />
         <h6 className="card-title">{props.title}</h6>
         <p className="card-text">{props.desc}</p>

@@ -30,6 +30,7 @@ const Posts = (props) => {
       likes
       totalComments
       createdAt
+      liked
     }
   }
 `;
@@ -44,14 +45,17 @@ const Posts = (props) => {
         <Spinner animation="grow" />
       </React.Fragment>
     );
-  if (error)
+  if (error) {
+    console.log(error);
     return (
       <React.Fragment>
-        <Modal title="Error" data={error.data} />
+        <Modal title="Error" body="You are all caught up" />
         <Pagination clicked={skipsInQueryHandler} />
       </React.Fragment>
     );
+  }
   if (data) {
+    console.log(data);
     postContext.setPosts(data.repos);
   }
 
@@ -67,6 +71,7 @@ const Posts = (props) => {
             likes={x.likes}
             comments={x.comments}
             createdAt={x.createdAt}
+            liked={x.liked}
           />
         );
       })}
