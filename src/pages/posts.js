@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { db } from "../components/shared/db";
 import Post from "../components/childComponents/post";
+import { PostContext } from "../context/ReposContext";
 
 const GET_ALL_REPOS = gql`
   query {
@@ -19,17 +19,22 @@ const GET_ALL_REPOS = gql`
   }
 `;
 const Posts = (props) => {
+  const postContext = useContext(PostContext);
+
   const { loading, error, data } = useQuery(GET_ALL_REPOS);
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
-  console.log(data);
+  if (data) {
+    postContext.setPosts(data.repos);
+  }
 
   return (
     <React.Fragment>
       {data.repos.map((x) => {
         return (
           <Post
+            key={x.id}
             userName={x.developer.userName}
             title={x.title}
             desc={x.desc}

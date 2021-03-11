@@ -23,7 +23,7 @@ const Post = (props) => {
         alt="Img"
       />
       <div className="card-body">
-        <Button variant="light" className="btn-sm">
+        <Button variant="light" className="btn-sm" onClick>
           Like
         </Button>
         <img class="svg_page" src={Comment} alt="Comment" />

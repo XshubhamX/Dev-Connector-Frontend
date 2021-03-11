@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
-export const PostData = createContext({
-  data: [],
+export const PostContext = createContext({
+  posts: [],
+  setPosts: () => {},
 });
