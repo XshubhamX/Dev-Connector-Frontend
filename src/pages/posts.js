@@ -3,12 +3,13 @@ import { gql, useQuery } from "@apollo/client";
 import Post from "../components/childComponents/post";
 import { PostContext } from "../context/ReposContext";
 import Pagination from "../components/childComponents/pagination";
+import Spinner from "react-bootstrap/Spinner";
+import Modal from "../components/childComponents/Modal";
 
 const Posts = (props) => {
   const [skips, setSkips] = useState(0);
 
   const skipsInQueryHandler = (e) => {
-    console.log(e.target.value);
     if (e.target.value !== skips) {
       if (e.target.value === 1) {
         setSkips(0);
@@ -16,7 +17,6 @@ const Posts = (props) => {
         setSkips(e.target.value * 10 - 10);
       }
     }
-    console.log(skips);
   };
   const GET_ALL_REPOS = gql`
   query {
@@ -40,10 +40,10 @@ const Posts = (props) => {
   if (loading) return "Loading...";
   if (error)
     return (
-      <div>
-        `Error! ${error.message}`
+      <React.Fragment>
+        <Modal title="Error" data={error.data} />
         <Pagination clicked={skipsInQueryHandler} />
-      </div>
+      </React.Fragment>
     );
   if (data) {
     postContext.setPosts(data.repos);
