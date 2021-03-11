@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import Post from "../components/childComponents/post";
 import { PostContext } from "../context/ReposContext";
@@ -37,7 +37,13 @@ const Posts = (props) => {
 
   const { loading, error, data } = useQuery(GET_ALL_REPOS);
 
-  if (loading) return "Loading...";
+  if (loading)
+    return (
+      <React.Fragment>
+        <Spinner animation="grow" size="sm" />
+        <Spinner animation="grow" />
+      </React.Fragment>
+    );
   if (error)
     return (
       <React.Fragment>
