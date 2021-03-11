@@ -1,11 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { gql, useQuery } from "@apollo/client";
 import Post from "../components/childComponents/post";
 import { PostContext } from "../context/ReposContext";
+import Pagination from "../components/childComponents/pagination";
 
-const GET_ALL_REPOS = gql`
+const Posts = (props) => {
+  const [skips, setSkips] = useState(0);
+
+  const skipsInQueryHandler = (e) => {
+    console.log(e.target.value);
+    if (e.target.value !== skips) {
+      if (e.target.value === 1) {
+        setSkips(0);
+      } else {
+        setSkips(e.target.value * 10 - 10);
+      }
+    }
+    console.log(skips);
+  };
+  const GET_ALL_REPOS = gql`
   query {
-    repos(skip: 10, limit: 10) {
+    repos(skip: ${skips}, limit: 10) {
       developer {
         userName
       }
@@ -18,13 +33,18 @@ const GET_ALL_REPOS = gql`
     }
   }
 `;
-const Posts = (props) => {
   const postContext = useContext(PostContext);
 
   const { loading, error, data } = useQuery(GET_ALL_REPOS);
 
   if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
+  if (error)
+    return (
+      <div>
+        `Error! ${error.message}`
+        <Pagination clicked={skipsInQueryHandler} />
+      </div>
+    );
   if (data) {
     postContext.setPosts(data.repos);
   }
@@ -44,6 +64,7 @@ const Posts = (props) => {
           />
         );
       })}
+      <Pagination clicked={skipsInQueryHandler} />
     </React.Fragment>
   );
 };

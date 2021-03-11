@@ -1,6 +1,6 @@
 import React from "react";
 import Comment from "../../static/svg/comment.svg";
-import { Image, Button } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Moment from "moment";
 
