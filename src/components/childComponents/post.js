@@ -23,14 +23,12 @@ const Post = (props) => {
         alt="Img"
       />
       <div className="card-body">
-        <Button variant="light" className="btn-sm" onClick>
-          Like
-        </Button>
+        <input type="checkbox" />
         <img class="svg_page" src={Comment} alt="Comment" />
         <h6 className="card-title">{props.title}</h6>
         <p className="card-text">{props.desc}</p>
         {props.likes ? (
-          <p className="card-text">
+          <p className="card-text" checked="true">
             <small className="text-muted">{props.likes} likes</small>
           </p>
         ) : null}
