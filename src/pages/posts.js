@@ -5,7 +5,7 @@ import { PostContext } from "../context/ReposContext";
 
 const GET_ALL_REPOS = gql`
   query {
-    repos {
+    repos(skip: 10, limit: 10) {
       developer {
         userName
       }
