@@ -6,12 +6,18 @@ import Moment from "moment";
 
 const Post = (props) => {
   let [checked, setChecked] = useState(props.liked);
+  let [likes, setLikes] = useState(props.likes);
   const checkChangeHandler = useCallback(
     (e) => {
+      if (checked) {
+        setLikes(likes - 1);
+      } else {
+        setLikes(likes + 1);
+      }
       setChecked(!checked);
       props.changed(e);
     },
-    [checked, props]
+    [checked, props, likes]
   );
   return (
     <div className="card mb-3">
@@ -32,9 +38,9 @@ const Post = (props) => {
         <img class="svg_page" src={Comment} alt="Comment" />
         <h6 className="card-title">{props.title}</h6>
         <p className="card-text">{props.desc}</p>
-        {props.likes ? (
+        {likes ? (
           <p className="card-text" checked="true">
-            <small className="text-muted">{props.likes} likes</small>
+            <small className="text-muted">{likes} likes</small>
           </p>
         ) : null}
         {props.comments ? (
