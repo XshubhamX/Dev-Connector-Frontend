@@ -5,6 +5,7 @@ import { PostContext } from "../context/ReposContext";
 import Pagination from "../components/childComponents/pagination";
 import Spinner from "react-bootstrap/Spinner";
 import Modal from "../components/childComponents/Modal";
+import Notification from "../components/shared/notificationTab";
 
 const Posts = (props) => {
   const [skips, setSkips] = useState(0);
@@ -78,28 +79,32 @@ const Posts = (props) => {
   if (data) {
     console.log(data);
     postContext.setPosts(data.repos);
-
     return (
-      <React.Fragment>
-        {data.repos.map((x) => {
-          return (
-            <Post
-              key={x.id}
-              id={x.id}
-              userName={x.developer.userName}
-              title={x.title}
-              desc={x.desc}
-              image={x.image}
-              likes={x.likes}
-              comments={x.comments}
-              createdAt={x.createdAt}
-              liked={x.liked}
-              changed={likeInMutationHandler}
-            />
-          );
-        })}
-        <Pagination clicked={skipsInQueryHandler} />
-      </React.Fragment>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 posts">
+            {data.repos.map((x) => (
+              <Post
+                key={x.id}
+                id={x.id}
+                userName={x.developer.userName}
+                title={x.title}
+                desc={x.desc}
+                image={x.image}
+                likes={x.likes}
+                comments={x.comments}
+                createdAt={x.createdAt}
+                liked={x.liked}
+                changed={likeInMutationHandler}
+              />
+            ))}
+            <Pagination clicked={skipsInQueryHandler} />
+          </div>
+          <div class="col-sm-4">
+            <Notification />
+          </div>
+        </div>
+      </div>
     );
   }
 };
