@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
 import Posts from "./pages/posts";
+import Login from "./pages/login";
 import Layout from "./components/layout";
 import { PostContext } from "./context/ReposContext";
 
@@ -10,12 +11,23 @@ const App = (props) => {
   const setPostData = useCallback((allPosts) => {
     setPosts(allPosts);
   }, []);
-  let routes = (
-    <Switch>
-      <Route for="/" component={Posts} />
-      <Redirect to="/" />
-    </Switch>
-  );
+  let token = localStorage.getItem("token");
+  let routes;
+  if (token) {
+    routes = (
+      <Switch>
+        <Route for="/posts" component={Posts} />
+        <Redirect to="/" />
+      </Switch>
+    );
+  } else {
+    routes = (
+      <Switch>
+        <Route for="/login" component={Login} />
+        <Redirect to="/login" />
+      </Switch>
+    );
+  }
 
   return (
     <PostContext.Provider
@@ -24,7 +36,7 @@ const App = (props) => {
         setPosts: setPostData,
       }}
     >
-      <Layout>{routes}</Layout>
+      {token ? <Layout>{routes}</Layout> : routes}
     </PostContext.Provider>
   );
 };
