@@ -58,6 +58,8 @@ const Posts = (props) => {
         repoId: id.toString(),
       },
     });
+
+    console.log(payload);
   };
 
   if (loading)
