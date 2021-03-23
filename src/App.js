@@ -12,6 +12,7 @@ const App = (props) => {
     setPosts(allPosts);
   }, []);
   let token = localStorage.getItem("token");
+  console.log(token);
   let routes;
   if (token) {
     routes = (
