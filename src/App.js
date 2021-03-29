@@ -18,7 +18,7 @@ const App = (props) => {
     routes = (
       <Switch>
         <Route for="/posts" component={Posts} />
-        <Redirect to="/" />
+        <Redirect to="/posts" />
       </Switch>
     );
   } else {
