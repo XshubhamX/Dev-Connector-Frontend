@@ -1,9 +1,0 @@
-.backImage {
-  background-image: url("./company.png");
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: auto;
-  display: block;
-}

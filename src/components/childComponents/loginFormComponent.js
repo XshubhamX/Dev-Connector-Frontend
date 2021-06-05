@@ -4,7 +4,18 @@ import { Form, Col } from "react-bootstrap";
 const FormComponent = (props) => {
   let data;
 
-  if (props.loginState) {
+  if (props.otpPage) {
+    data = (
+      <div>
+        <Form.Row>
+          <Form.Group as={Col} controlId="Otp">
+            <Form.Label>Otp</Form.Label>
+            <Form.Control type="text" placeholder="Otp" />
+          </Form.Group>
+        </Form.Row>
+      </div>
+    );
+  } else if (props.loginState) {
     data = (
       <div>
         <Form.Row>

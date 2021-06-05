@@ -10,7 +10,7 @@ import "./App.css";
 localStorage.removeItem("token");
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000",
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
   headers: {
     authorization: "Bearer " + localStorage.getItem("token") || "",
