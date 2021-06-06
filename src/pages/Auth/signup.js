@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Signup = (props) => {
   const SEND_OTP_MUTATION = gql`
     mutation sendOtp($email: String!, $password: String!) {
-      sendOtp(data: { email: $email, password: $Password }) {
+      sendOtp(data: { email: $email, password: $password }) {
         databaseId
       }
     }
@@ -20,20 +20,29 @@ const Signup = (props) => {
   const tempContext = useContext(TempContext);
 
   const sendotpHandler = async (e) => {
+    e.preventDefault();
+
+    console.log(e.target.Password, e.target.Email);
     const { data } = await sendOtp({
       variables: {
-        email: e.target.Email,
-        password: e.target.Password,
+        email: e.target.Email.value,
+        password: e.target.Password.value,
       },
     });
 
-    console.log(data);
+    tempContext.set(
+      e.target.Name.value,
+      e.target.Username.value,
+      data.sendOtp.databaseId
+    );
+
+    props.history.push("/otp");
   };
 
   return (
     <div className="container row bg-secondary">
       <div className="col-lg-12">
-        <Form>
+        <Form onSubmit={sendotpHandler}>
           <FormData />
           <Form.Group id="formGridCheckbox">
             <Form.Check
@@ -42,7 +51,7 @@ const Signup = (props) => {
             />
           </Form.Group>
           <Form.Group>
-            <Button variant="primary" onClick={sendotpHandler}>
+            <Button type="submit" variant="primary">
               Signup
             </Button>
           </Form.Group>

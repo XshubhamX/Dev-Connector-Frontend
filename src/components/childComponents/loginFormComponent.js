@@ -37,7 +37,7 @@ const FormComponent = (props) => {
         <Form.Row>
           <Form.Group as={Col} controlId="Username">
             <Form.Label>User Name</Form.Label>
-            <Form.Control type="email" placeholder="User Name" />
+            <Form.Control type="text" placeholder="User Name" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="Password">
@@ -46,14 +46,14 @@ const FormComponent = (props) => {
           </Form.Group>
         </Form.Row>
 
-        <Form.Group controlId="Fullname">
+        <Form.Group controlId="Name">
           <Form.Label>Full Name</Form.Label>
-          <Form.Control placeholder="Full Name" />
+          <Form.Control type="text" placeholder="Full Name" />
         </Form.Group>
 
         <Form.Group controlId="Email">
           <Form.Label>Email</Form.Label>
-          <Form.Control placeholder="Email" />
+          <Form.Control type="email" placeholder="Email" />
         </Form.Group>
       </div>
     );

@@ -13,7 +13,7 @@ import { TempContext } from "./context/TempContext";
 const App = (props) => {
   const [posts, setPosts] = useState([]);
   const [name, setName] = useState("");
-  const [username, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [databaseId, setDatabaseId] = useState("");
 
   const setPostData = useCallback((allPosts) => {
@@ -37,11 +37,13 @@ const App = (props) => {
   let token = localStorage.getItem("token");
 
   let routes;
+  console.log(token);
   if (token) {
     routes = (
       <Switch>
-        <Route for="/posts" component={Posts} />
-        <Redirect to="/posts" />
+        <Route path="/" component={Home} exact />
+        <Route path="/feed" component={Posts} />
+        <Redirect to="/" />
       </Switch>
     );
   } else {
@@ -56,6 +58,8 @@ const App = (props) => {
     );
   }
 
+  console.log(routes);
+
   return (
     <AuthContext.Provider
       value={{
@@ -66,7 +70,7 @@ const App = (props) => {
       <TempContext.Provider
         value={{
           name,
-          username,
+          userName,
           databaseId,
           set,
         }}

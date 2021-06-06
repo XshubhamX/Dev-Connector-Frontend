@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Form, Button } from "react-bootstrap";
 import FormData from "../../components/childComponents/loginFormComponent";
+import { AuthContext } from "../../context/AuthContext";
+import { TempContext } from "../../context/TempContext";
 
 const Otp = (props) => {
   const SIGNUP_MUTATION = gql`
-    mutation signup(
-      $email: String!
-      $password: String!
-      $databaseId: String
-      $otp: String
+    mutation signUp(
+      $name: String!
+      $userName: String!
+      $databaseId: String!
+      $otp: String!
     ) {
-      login(
-        userData: { email: $email, password: $password }
+      signUp(
+        userData: { name: $name, userName: $userName }
         databaseId: $databaseId
         otp: $otp
       ) {
@@ -27,10 +29,26 @@ const Otp = (props) => {
     }
   `;
 
-  const [signup, { error, loading }] = useMutation(SIGNUP_MUTATION);
+  const [signUp, { error, loading }] = useMutation(SIGNUP_MUTATION);
 
-  const signupHandler = async () => {
-    return;
+  const tempContext = useContext(TempContext);
+  const authContext = useContext(AuthContext);
+
+  const signupHandler = async (e) => {
+    e.preventDefault();
+
+    const { data } = await signUp({
+      variables: {
+        name: tempContext.name,
+        userName: tempContext.userName,
+        databaseId: tempContext.databaseId,
+        otp: e.target.Otp.value,
+      },
+    });
+
+    authContext.login(data.signUp.token);
+
+    props.history.push("/feed");
   };
 
   return (

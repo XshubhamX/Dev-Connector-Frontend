@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 export const TempContext = createContext({
   name: "",
-  username: "",
+  userName: "",
   databaseId: "",
   set: () => {},
 });
