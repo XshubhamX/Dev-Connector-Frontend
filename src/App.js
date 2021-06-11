@@ -81,7 +81,7 @@ const App = (props) => {
             setPosts: setPostData,
           }}
         >
-          {token ? <Layout>{routes}</Layout> : routes}
+          <Layout>{routes}</Layout>
         </PostContext.Provider>
       </TempContext.Provider>
     </AuthContext.Provider>
