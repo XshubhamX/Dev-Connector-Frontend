@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import FormData from "../../components/childComponents/loginFormComponent";
 
@@ -20,6 +20,7 @@ const Login = (props) => {
   `;
 
   let [login, { error, loading }] = useMutation(LOGIN_MUTATION);
+  const text = "Login";
 
   const signinHandler = async (e) => {
     e.preventDefault();
@@ -47,7 +48,7 @@ const Login = (props) => {
           </Form.Group>
           <Form.Group>
             <Button variant="primary" type="submit">
-              Login
+              {loading ? <Spinner animation="grow" /> : text}
             </Button>
           </Form.Group>
           <Form.Group>

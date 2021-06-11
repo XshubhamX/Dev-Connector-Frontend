@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Col, InputGroup } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 
 const FormComponent = (props) => {
   let data;
@@ -46,21 +46,24 @@ const FormComponent = (props) => {
           <Form.Control type="text" placeholder="Full Name" />
         </Form.Group>
 
-        <Form.Label>Username</Form.Label>
-        <InputGroup hasValidation>
-          <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            type="text"
-            placeholder="Username"
-            aria-describedby="inputGroupPrepend"
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Please choose a username.
-          </Form.Control.Feedback>
-        </InputGroup>
+        <Form.Group controlId="Username">
+          <Form.Label>Username</Form.Label>
+          <InputGroup hasValidation>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              type="text"
+              placeholder="Username"
+              aria-describedby="inputGroupPrepend"
+              con
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Please choose a username.
+            </Form.Control.Feedback>
+          </InputGroup>
+        </Form.Group>
 
         <Form.Group controlId="Password">
           <Form.Label>Password</Form.Label>
@@ -69,7 +72,7 @@ const FormComponent = (props) => {
       </>
     );
   }
-  return <Form class="ml-auto">{data}</Form>;
+  return <React.Fragment>{data}</React.Fragment>;
 };
 
 export default FormComponent;

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { gql, useMutation } from "@apollo/client";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import FormData from "../../components/childComponents/loginFormComponent";
 import { LinkContainer } from "react-router-bootstrap";
 import { TempContext } from "../../context/TempContext";
@@ -16,13 +16,15 @@ const Signup = (props) => {
   `;
 
   const [sendOtp, { error, loading }] = useMutation(SEND_OTP_MUTATION);
+  const text = "Signup";
 
   const tempContext = useContext(TempContext);
 
   const sendotpHandler = async (e) => {
     e.preventDefault();
 
-    console.log(e.target.Password, e.target.Email);
+    console.log(e.target.Name.value, e.target.Username.value);
+
     const { data } = await sendOtp({
       variables: {
         email: e.target.Email.value,
@@ -52,7 +54,7 @@ const Signup = (props) => {
           </Form.Group>
           <Form.Group>
             <Button type="submit" variant="primary">
-              Signup
+              {loading ? <Spinner animation="grow" /> : text}
             </Button>
           </Form.Group>
           <Form.Group>

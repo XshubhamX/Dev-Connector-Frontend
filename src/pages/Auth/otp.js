@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { gql, useMutation } from "@apollo/client";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import FormData from "../../components/childComponents/loginFormComponent";
 import { AuthContext } from "../../context/AuthContext";
 import { TempContext } from "../../context/TempContext";
@@ -33,6 +33,7 @@ const Otp = (props) => {
 
   const tempContext = useContext(TempContext);
   const authContext = useContext(AuthContext);
+  const text = "Confirm";
 
   const signupHandler = async (e) => {
     e.preventDefault();
@@ -58,7 +59,7 @@ const Otp = (props) => {
           <FormData otpPage />
           <Form.Group>
             <Button variant="primary" type="submit">
-              Confirm
+              {loading ? <Spinner animation="grow" /> : text}
             </Button>
           </Form.Group>
         </Form>
