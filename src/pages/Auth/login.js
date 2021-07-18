@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Form, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import FormData from "../../components/childComponents/loginFormComponent";
 
 const Login = (props) => {
@@ -21,18 +22,21 @@ const Login = (props) => {
 
   let [login, { error, loading }] = useMutation(LOGIN_MUTATION);
   const text = "Login";
+  const authContext = useContext(AuthContext);
 
   const signinHandler = async (e) => {
     e.preventDefault();
 
-    const data = await login({
+    const { data } = await login({
       variables: {
         email: e.target.Email.value,
         password: e.target.Password.value,
       },
     });
 
-    console.log(data);
+    authContext.login(data.login.token);
+
+    props.history.push("/feed");
   };
 
   return (
